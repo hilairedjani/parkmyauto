@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_044635) do
     t.string "city"
     t.string "province"
     t.string "postal_code"
-    t.integer "telephone_number"
+    t.string "telephone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

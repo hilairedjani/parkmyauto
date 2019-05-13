@@ -39,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :city
       t.string :province
       t.string :postal_code
-      t.integer :telephone_number
+      t.string :telephone_number
 
       t.timestamps null: false
     end
