@@ -58,3 +58,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Use devise for authentication
 gem "devise"
+
+gem 'rails_12factor', group: :production
+gem 'sendgrid-ruby'
