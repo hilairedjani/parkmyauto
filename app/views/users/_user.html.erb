@@ -1,0 +1,11 @@
+<div class="row">
+<div clas="col-12 card">
+<h3>User Info</h3>
+<p>Email: <%= current_user.email %></p>
+<%= current_user.role.user? %>
+
+<%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-primary float-right" %>
+
+</div>
+</div>
+<%= render "vehicles/vehicles" %>

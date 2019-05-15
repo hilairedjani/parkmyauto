@@ -5,55 +5,23 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-  <div class="collapse navbar-collapse float-right" id="navbarsExample04">
-    <ul class="navbar-nav mr-auto">
-    <% if user_signed_in? %>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.email %></a>
-            <div class="dropdown-menu" aria-labelledby="dropdown04">
-                <%= link_to "Edit profile", edit_user_registration_path, class: "dropdown-item" %>
-                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-            </div>
-        </li>
+  <div class="collapse navbar-collapse" id="navbarsExample04">
+    <ul class="navbar-nav ml-auto">
+    <% if user_signed_in? %>      
+        <% if current_user.role.admin? %>
+            <li class="nav-item"><%= link_to "Users", users_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to "Vehicles", all_vehicles_path, class: "nav-link" %></li>
+        <% else %>
+            <li class="nav-item"><%= link_to "My Vehicles", user_vehicles_path(current_user), class: "nav-link" %></li>
+        <% end %>
+
+        <li class="nav-item"><%= link_to "My account", user_path(current_user), class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %></li>
     <% else %>
-        <li class="nav-item"><%= link_to "Register", register_path, class: "nav-link" %></li>
-        <li class="nav-item"><%= link_to "Log in", login_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Register", new_user_registration_path, class: "nav-link" %></li>
+        <li class="nav-item"><%= link_to "Log in", new_user_session_path, class: "nav-link" %></li>
     <% end %>  
     </ul>
   </div>
   </div>
 </nav>
-    <!--
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to "Park My Auto", root_path, class: "navbar-brand" %>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse navbar-right">
-          <ul class="nav navbar-nav">
-          <% if user_signed_in? %>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <span><%= current_user.email %></span>
-                    <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                    <li><%= link_to "Edit profile", edit_user_registration_path %></li>
-                    <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
-                </ul>
-            </li>
-          <% else %>
-            <li><%= link_to "Register", register_path %></li>
-            <li><%= link_to "Log in", login_path %></li>
-          <% end %>    
-          </ul>
-        </div>
-      </div>
-    </nav>
-    -->

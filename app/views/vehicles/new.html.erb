@@ -1,0 +1,41 @@
+<h3>Vehicle details </h3>
+<hr>
+
+<%= form_for [@user, @vehicle] do |f| %>
+    <% if @vehicle && @vehicle.errors.any? %>
+        <% @vehicle.errors.full_messages.each do |msg| %>
+            <div class="alert alert-danger"><%= msg %></div>
+        <% end %>
+    <% end %>
+    <div class="form-group">
+        <%= f.label :license_plate %>
+        <%= f.text_field :license_plate, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :colour %>
+        <%= f.text_field :colour, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :make %>
+        <%= f.text_field :make, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :model %>
+        <%= f.text_field :model, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.label :year %>
+        <%= f.text_field :year, class: "form-control" %>
+    </div>
+
+   
+
+    <div class="actions">
+        <%= f.submit "Add vehicle", class: "btn btn-primary float-right" %>
+    </div>
+
+<% end %>

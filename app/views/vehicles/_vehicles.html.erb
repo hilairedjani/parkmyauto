@@ -1,0 +1,36 @@
+
+
+
+        <h3 class="text-center">User Vehicles</h3>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" style="width: 5%">#</th>
+                        <th scope="col" style="width: 50%">Vehicle</th>
+                        <th scope="col" style="width: 25%">Status</th>
+                        <th scope="col" style="width: 10%"></th>
+                        <th scope="col" style="width: 10%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% @user.vehicles.each.with_index do |vehicle, index| %>
+                    <tr>
+                        <th scope="row"><%= index + 1 %></th>
+                        <td><%= link_to "#{vehicle.license_plate}", user_vehicle_path(vehicle.user_id, vehicle) %></td>
+                        <td scope="row"><%= vehicle.status ? "PAID" : "UNPAID" %></td>
+                        <td><%= link_to "Edit", edit_user_vehicle_path(vehicle.user_id, vehicle), class: "btn btn-primary float-left" %></td>
+                        <td><%= link_to "Delete", user_vehicle_path(vehicle.user_id, vehicle), method: :delete, data: {confirm: "Delete this vehicle?"}, class: "btn btn-danger float-right" %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+            </table>
+
+            <% unless current_user.role.admin? or @vehicles.length >= 2 %>
+            <hr>
+            <%= link_to "Add a vehicle", new_user_vehicle_path(current_user), class: "btn btn-primary float-right" %>
+            <% end %>
+        </div>
+
+

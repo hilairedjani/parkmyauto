@@ -1,0 +1,68 @@
+<h3>Edit vehicle information</h3>
+<hr>
+
+<%= form_for :vehicle, url: user_vehicle_path(@vehicle), method: :patch do |f| %>
+    <% if @vehicle && @vehicle.errors.any? %>
+        <% @vehicle.errors.full_messages.each do |msg| %>
+            <div class="alert alert-danger"><%= msg %></div>
+        <% end %>
+    <% end %>
+
+    <% if current_user.role.admin? %>
+    <div class="form-group row">
+        <div class="col-3">Owner</div>
+        <div class="col-sm-9">
+            <%= @user.email %>
+        </div>
+    </div>
+    <% end %>
+    
+    <div class="form-group row">
+        <%= f.label :license_plate, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+            <%= f.text_field :license_plate, class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <%= f.label :colour, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+            <%= f.text_field :colour, class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <%= f.label :make, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+            <%= f.text_field :make, class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <%= f.label :model, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+            <%= f.text_field :model, class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <%= f.label :year, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-9">
+            <%= f.text_field :year, class: "form-control" %>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <%= f.label :status, class: "col-sm-3 col-form-label" %>
+        <div class="col-sm-9 form-control-plaintext">
+            <% if @vehicle.status %>
+                PAID
+            <% else %>
+                UNPAID -  <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), checkout_path, method: :patch
+ %>
+            <% end %>
+        </div>
+    </div>
+
+    <%= f.submit "Edit vehicle", class: "btn btn-primary float-right" %>
+<% end %>

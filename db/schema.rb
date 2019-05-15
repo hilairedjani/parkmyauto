@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2019_05_13_070206) do
 
   create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "role_name"
+    t.integer "role_name", default: 0, null: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,6 +26,10 @@ ActiveRecord::Schema.define(version: 2019_05_13_070206) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.string "first_name"
     t.string "last_name"
     t.string "street_address"
@@ -35,6 +39,7 @@ ActiveRecord::Schema.define(version: 2019_05_13_070206) do
     t.string "telephone_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -45,10 +50,13 @@ ActiveRecord::Schema.define(version: 2019_05_13_070206) do
     t.string "make", null: false
     t.string "model"
     t.string "year"
+    t.boolean "status", default: false
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
+  add_foreign_key "roles", "users"
+  add_foreign_key "vehicles", "users"
 end

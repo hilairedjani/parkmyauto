@@ -6,8 +6,9 @@ class CreateVehicles < ActiveRecord::Migration[5.2]
         t.string :make, null: false
         t.string :model
         t.string :year
+        t.boolean :status, default: false
 
-        t.belongs_to :user, index: true
+        t.references :user, foreign_key: true
       t.timestamps
     end
   end

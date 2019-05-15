@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
     def home
-        @vehicles = Vehicle.where(user_id: current_user.id)
+        if current_user
+            redirect_to user_vehicles_path(current_user)
+        end
     end
 end

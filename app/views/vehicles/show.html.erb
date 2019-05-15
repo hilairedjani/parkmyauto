@@ -1,0 +1,48 @@
+
+
+
+        <h3 class="text-center">Vehicle Information</h3>
+
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row" style="width: 30%">License plate</th>
+                        <td style="width: 70%"><%= @vehicle.license_plate %></td>     
+                    </tr>  
+                    <tr>
+                        <th scope="row" style="width: 30%">Colour</th>
+                        <td style="width: 70%"><%= @vehicle.colour %></td>     
+                    </tr> 
+                    <tr>
+                        <th scope="row" style="width: 30%">Make</th>
+                        <td style="width: 70%"><%= @vehicle.make %></td>     
+                    </tr> 
+                    <tr>
+                        <th scope="row" style="width: 30%">Model</th>
+                        <td style="width: 70%"><%= @vehicle.model %></td>     
+                    </tr> 
+                    <tr>
+                        <th scope="row" style="width: 30%">Year</th>
+                        <td style="width: 70%"><%= @vehicle.year %></td>     
+                    </tr> 
+                    <tr>
+                        <th scope="row" style="width: 30%">Status</th>
+                        <td style="width: 70%">
+                        <% if @vehicle.status %>
+                            PAID
+                        <% else %>
+                            UNPAID &emsp;<%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), checkout_path, method: :patch
+     %>
+                        <% end %> </td> 
+                    </tr> 
+                </tbody>
+            </table>
+            
+            </div>
+<br>
+<hr>
+<%= link_to "Back", :back, class: "btn btn-dark float-left" %>
+
+
+
