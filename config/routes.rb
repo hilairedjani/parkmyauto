@@ -9,11 +9,7 @@ Rails.application.routes.draw do
     resources :roles
   end
 
-#   devise_scope :user do
-#     get "login", to: "devise/sessions#new"
-#     get "register", to: "devise/registrations#new"
-#     resources :vehicles
-#   end
+
 
   get "/vehicles" => "vehicles#all_vehicles", as: "all_vehicles"
   patch "/users/:user_id/vehicles/:id/checkout" => "vehicles#checkout", as: "checkout" 
