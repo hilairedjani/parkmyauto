@@ -49,6 +49,7 @@ test:
 #
 production:
   <<: *default
-  database: park_my_auto_production
-  username: park_my_auto
-  password: <%= ENV['PARK_MY_AUTO_DATABASE_PASSWORD'] %>
+  host: us-cdbr-iron-east-02.cleardb.net
+  database: heroku_9d3cd8e920d2a1b
+  username: b55b4dd5e5c40f
+  password: f5e06eb5
