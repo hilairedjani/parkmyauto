@@ -5,7 +5,7 @@ class VehiclesController < ApplicationController
     end
 
     def show
-        @user = current_user
+        @user = User.find(params[:user_id])
         @vehicle = Vehicle.find(params[:id])
     end
 

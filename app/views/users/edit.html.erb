@@ -45,7 +45,7 @@
     <%= f.submit "Edit user", class: "btn btn-primary float-right" %>
 <% end %>
 
-<% if current_user.role.admin? && current_user.vehicles.count > 0 %>
+<% if current_user.role.admin? && @user.vehicles.count > 0 %>
 <br>
 <br>
 <hr>
