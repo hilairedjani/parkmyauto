@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-    devise_for :users, path: "auth", :sign_out_via => [ :post, :delete ], controllers: {
+    devise_for :users, path: "auth", controllers: {
         sessions: 'users/sessions',
         registrations: "users/registrations"
       }
