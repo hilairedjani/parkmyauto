@@ -62,3 +62,5 @@ gem "devise"
 gem 'rails_12factor', group: :production
 gem 'sendgrid-ruby'
 
+# Add jquery
+gem 'jquery-rails'
